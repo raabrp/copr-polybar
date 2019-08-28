@@ -58,7 +58,7 @@ Source0: https://github.com/polybar/polybar/archive/%{version}.tar.gz
 # them, if you don't need them, after you built polybar
 BuildRequires: clang
 BuildRequires: cmake
-BuildRequires: @development-tools
+BuildRequires: cmake-data
 BuildRequires: python3-sphinx
 
 # These are the hard dependencies, you cannot build or run polybar without them
