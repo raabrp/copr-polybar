@@ -229,7 +229,6 @@ cd build
 /usr/local/share/man/man1/polybar.1
 # DOCDIR:  /usr/local/share/doc/polybar
 %dir /usr/local/share/doc/polybar
-/usr/local/share/doc/polybar
 /usr/local/share/doc/polybar/config
 %doc /usr/local/share/doc/polybar/index.html
 /usr/local/share/doc/polybar/_static
