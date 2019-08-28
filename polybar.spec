@@ -63,6 +63,7 @@ Source2: https://github.com/polybar/xpp/tarball/%{xpp_hash}
 # The following dependencies are only needed during compilation, you can remove
 # them, if you don't need them, after you built polybar
 BuildRequires: clang
+BuildRequires: git
 BuildRequires: cmake
 BuildRequires: cmake-data
 BuildRequires: python-sphinx
