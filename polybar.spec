@@ -121,7 +121,8 @@ has built-in functionality to display information about the most commonly
 used services.
 
 # stops rpmbuild from complaining about empty debug files.
-# this macro should come before the %prep and %setup sections of the spec file.
+# this macro should come before the 'prep' and 'setup' sections of the spec
+# file.
 %global debug_package %{nil}
 
 ################################################################################
@@ -229,44 +230,44 @@ cd build
 /usr/local/share/man/man1/polybar.1
 # DOCDIR:  /usr/local/share/doc/polybar
 %dir /usr/local/share/doc/polybar
-/usr/local/share/doc/polybar/config
-%doc /usr/local/share/doc/polybar/index.html
-/usr/local/share/doc/polybar/_static
-/usr/local/share/doc/polybar/_static/ajax-loader.gif
-/usr/local/share/doc/polybar/_static/up-pressed.png
-/usr/local/share/doc/polybar/_static/websupport.js
-/usr/local/share/doc/polybar/_static/basic.css
-/usr/local/share/doc/polybar/_static/jquery-3.2.1.js
-/usr/local/share/doc/polybar/_static/comment.png
-/usr/local/share/doc/polybar/_static/comment-close.png
-/usr/local/share/doc/polybar/_static/plus.png
-/usr/local/share/doc/polybar/_static/comment-bright.png
-/usr/local/share/doc/polybar/_static/underscore.js
-/usr/local/share/doc/polybar/_static/underscore-1.3.1.js
-/usr/local/share/doc/polybar/_static/language_data.js
-/usr/local/share/doc/polybar/_static/doctools.js
-/usr/local/share/doc/polybar/_static/up.png
-/usr/local/share/doc/polybar/_static/down-pressed.png
-/usr/local/share/doc/polybar/_static/file.png
-/usr/local/share/doc/polybar/_static/documentation_options.js
-/usr/local/share/doc/polybar/_static/alabaster.css
-/usr/local/share/doc/polybar/_static/minus.png
-/usr/local/share/doc/polybar/_static/custom.css
-/usr/local/share/doc/polybar/_static/down.png
-/usr/local/share/doc/polybar/_static/pygments.css
-/usr/local/share/doc/polybar/_static/searchtools.js
-/usr/local/share/doc/polybar/_static/jquery.js
-/usr/local/share/doc/polybar/man
-/usr/local/share/doc/polybar/man/polybar.1.html
-/usr/local/share/doc/polybar/searchindex.js
-/usr/local/share/doc/polybar/search.html
-/usr/local/share/doc/polybar/_sources
-/usr/local/share/doc/polybar/_sources/index.rst.txt
-/usr/local/share/doc/polybar/_sources/man
-/usr/local/share/doc/polybar/_sources/man/polybar.1.rst.txt
-/usr/local/share/doc/polybar/objects.inv
-/usr/local/share/doc/polybar/genindex.html
-/usr/local/share/doc/polybar/.buildinfo
+%attr (755, root, root) /usr/local/share/doc/polybar/config
+%attr (755, root, root) %doc /usr/local/share/doc/polybar/index.html
+%attr (755, root, root) /usr/local/share/doc/polybar/_static
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/ajax-loader.gif
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/up-pressed.png
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/websupport.js
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/basic.css
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/jquery-3.2.1.js
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/comment.png
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/comment-close.png
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/plus.png
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/comment-bright.png
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/underscore.js
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/underscore-1.3.1.js
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/language_data.js
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/doctools.js
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/up.png
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/down-pressed.png
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/file.png
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/documentation_options.js
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/alabaster.css
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/minus.png
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/custom.css
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/down.png
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/pygments.css
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/searchtools.js
+%attr (755, root, root) /usr/local/share/doc/polybar/_static/jquery.js
+%attr (755, root, root) /usr/local/share/doc/polybar/man
+%attr (755, root, root) /usr/local/share/doc/polybar/man/polybar.1.html
+%attr (755, root, root) /usr/local/share/doc/polybar/searchindex.js
+%attr (755, root, root) /usr/local/share/doc/polybar/search.html
+%attr (755, root, root) /usr/local/share/doc/polybar/_sources
+%attr (755, root, root) /usr/local/share/doc/polybar/_sources/index.rst.txt
+%attr (755, root, root) /usr/local/share/doc/polybar/_sources/man
+%attr (755, root, root) /usr/local/share/doc/polybar/_sources/man/polybar.1.rst.txt
+%attr (755, root, root) /usr/local/share/doc/polybar/objects.inv
+%attr (755, root, root) /usr/local/share/doc/polybar/genindex.html
+%attr (755, root, root) /usr/local/share/doc/polybar/.buildinfo
 
 ################################################################################
 # Changelog
