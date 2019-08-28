@@ -13,7 +13,7 @@ Version: 3.4.0
 
 # The number of times this version of the software was released. Normally, set
 # the initial value to 1(replace){?dist}, and increment it with each new release
-# of the package. Reset to 1 when a new Version of the software is built. 
+# of the package. Reset to 1 when a new Version of the software is built.
 Release: 1%{?dist}
 
 # A brief, one-line summary of the package.
@@ -25,7 +25,7 @@ License: MIT
 Group: System/GUI/Other
 
 # The full URL for more information about the program. Most often this is the
-# upstream project website for the software being packaged. 
+# upstream project website for the software being packaged.
 URL: https://polybar.github.io/
 
 # Path or URL to the compressed archive of the upstream source code (unpatched,
@@ -35,7 +35,7 @@ URL: https://polybar.github.io/
 # incrementing the number each time, for example: Source1, Source2, Source3,
 # and so on.
 %global i3ipcpp_hash 21ce906
-%global xpp_hash d2ff2aa 
+%global xpp_hash d2ff2aa
 
 Source0: https://github.com/polybar/polybar/archive/%{version}.tar.gz
 # git submodules are not included in root .tar.gz
@@ -50,7 +50,7 @@ Source2: https://github.com/polybar/xpp/tarball/%{xpp_hash}
 # If the package is not architecture dependent, for example, if written
 # entirely in an interpreted programming language, set this to BuildArch:
 # noarch. If not set, the package automatically inherits the Architecture
-# of the machine on which it is built, for example x86_64. 
+# of the machine on which it is built, for example x86_64.
 # BuildArch:
 
 # A comma- or whitespace-separated list of packages required for building the
@@ -63,7 +63,7 @@ Source2: https://github.com/polybar/xpp/tarball/%{xpp_hash}
 # The following dependencies are only needed during compilation, you can remove
 # them, if you don't need them, after you built polybar
 BuildRequires: clang
-BuildRequires: git
+# BuildRequires: git
 BuildRequires: cmake
 BuildRequires: cmake-data
 BuildRequires: python-sphinx
@@ -103,35 +103,39 @@ Requires: xcb-util-wm
 
 # If a piece of software can not operate on a specific processor architecture,
 # you can exclude that architecture here.
-# ExcludeArch: 
+# ExcludeArch:
 
 ################################################################################
 # Description
 
 # A full description of the software packaged in the RPM. This description can
-# span multiple lines and can be broken into paragraphs. 
+# span multiple lines and can be broken into paragraphs.
 
 %description
 Polybar aims to help users build beautiful and highly customizable status
 bars for their desktop environment, without the need of having a black belt in
-shellscripting.
+shell-scripting.
 
 The main purpose of Polybar is to help users create awesome status bars. It
 has built-in functionality to display information about the most commonly
 used services.
+
+# stops rpmbuild from complaining about empty debug files.
+# this macro should come before the %prep and %setup sections of the spec file.
+%global debug_package %{nil}
 
 ################################################################################
 # Prep
 
 # Command or series of commands to prepare the software to be built, for
 # example, unpacking the archive in Source0. This directive can contain a shell
-# script. 
+# script.
 %prep
 
 # The setup macro ensures that we are working in the right directory, removes
 # residues of previous builds, unpacks the source tarball, and sets up some
 # default privileges.
-%setup -a 1 -a 2
+%setup -q -a 1 -a 2
 
 # unpack submodules into correct directories
 mv %{name}-i3ipcpp-%{i3ipcpp_hash}/* lib/i3ipcpp/
@@ -152,7 +156,12 @@ cd build
 # options come from inspection of
 #   include/settings.hpp.cmake &
 #   CMakeLists.txt
-# just set everythong to on
+
+# Set everything to on except tests. Tests require internet access to
+# googletests git repository, which keeps failing on my local builds with mock.
+# (all tests pass when build in my local environment outside of mock's chroot).
+# Without tests, we comment out the `make test` section of "check" and we no
+# longer need git as a build dependency.
 cmake .. \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_C_COMPILER="clang" \
@@ -170,7 +179,7 @@ cmake .. \
       -DWITH_XRM:BOOL="ON" \
       -DWITH_XCURSOR:BOOL="ON" \
       -DBUILD_DOC:BOOL="ON" \
-      -DBUILD_TESTS:BOOL="ON"
+      -DBUILD_TESTS:BOOL="OFF"
 
 %make_build
 
@@ -178,7 +187,7 @@ cmake .. \
 # Install
 
 # Command or series of commands for copying the desired build artifacts from the
-# builddir (where the build happens) to the %buildroot directory (which
+# builddir (where the build happens) to the 'buildroot' directory (which
 # contains the directory structure with the files to be packaged). This usually
 # means copying files from ~/rpmbuild/BUILD to ~/rpmbuild/BUILDROOT and creating
 # the necessary directories in ~/rpmbuild/BUILDROOT. This is only run when
@@ -194,12 +203,12 @@ cd build
 # Check
 
 # Command or series of commands to test the software. This normally includes
-# things such as unit tests. 
+# things such as unit tests.
 %check
 
 cd build
 
-make test
+# make test
 
 ################################################################################
 # Files
@@ -264,7 +273,7 @@ make test
 # Changelog
 
 # A record of changes that have happened to the package between different
-# Version or Release builds. 
+# Version or Release builds.
 %changelog
-* Tue Aug 27 2019 Reilly Raab <rraab@ucsc.edu>
+* Tue Aug 27 2019 Reilly Raab <rraab@ucsc.edu> 3.4.0
   - Initial version

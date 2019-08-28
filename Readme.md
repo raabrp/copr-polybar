@@ -22,9 +22,11 @@ the Redhat Developer Program.
 Besides documentation for the `.spec` file format, the most helpful element of
 the documentation was at the begining of the document: steps for local testing.
 
+## Building in your local environment
+
 1. Install the rpm devtools
 
-`dnf install rpmdevtools rpm-build`
+`sudo dnf install rpmdevtools rpm-build`
 
 2. Set up the build directories expected by the tool (they will be placed in
 your home directory)
@@ -39,6 +41,40 @@ your home directory)
 (note, build dependencies must be met first)
 
 `rpmbuild -ba <spec_file>`
+
+## Mimicking COPR builds
+
+These instructions are referenced from 
+[fedoraproject.org](https://fedoraproject.org/wiki/Using_Mock_to_test_package_builds).
+
+1. Install [mock](https://github.com/rpm-software-management/mock/wiki) and
+add yourself to the mock group.
+
+```
+sudo dnf install mock fedpkg
+sudo usermod -a -G mock $USER
+```
+
+2. Build the source RPM with rpmbuild (install and setup documented above) and
+lint it for errors. Replace "f30" with your target release.
+
+```
+rpmbuild -bs <specfile>
+cp <specfile> ~/rpmbuild/SRPMS
+fedpkg --path ~/rpmbuild/SRPMS --release f30 lint
+```
+
+3. "rebuild" the RPM from the source RPM using mock, where the package name will
+have been given by rpmbuild in the last step. Mock will default to your current
+version and architecture unless given an alternate target with `-r`. Enabling
+the ccache plugin will speed up the debug cycle.
+
+```
+cd ~/rpmbuild/SRPMS
+mock --enable-plugin ccache <package-name.src.rpm>
+```
+
+4. If you make it here without errors, you should be good-to-go for COPR.
 
 # Building on COPR
 
