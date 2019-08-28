@@ -5,8 +5,8 @@ which packages [polybar](https://polybar.github.io/) as an RPM.
 This exercise was intended to introduce me to the RPM ecosytem. Polybar was a
 good target since multiple spec files already exist on COPR for this software.
 
-This being said, I do beleive I made some improvements over existing packages 
-n(such as downloading sources from the github archives rather than the tarball 
+This being said, I do believe I made some improvements over existing packages 
+(such as downloading sources from the github archives rather than the tarball 
 release, which in theory need not match the original sources). I also compiled
 the source with all optional modules enabled, included the documentation in the
 install.
