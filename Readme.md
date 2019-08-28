@@ -1,25 +1,26 @@
 This repository is referenced by the COPR build system for
-[rpraab/Polybar](https://copr.fedorainfracloud.org/coprs/rpraab/Polybar/)
-to package [polybar](https://polybar.github.io/) as an RPM.
+[rpraab/Polybar](https://copr.fedorainfracloud.org/coprs/rpraab/Polybar/),
+which packages [polybar](https://polybar.github.io/) as an RPM.
 
-I used this repo to introduce myself to the RPM ecosytem. Polybar was a good
-target since multiple spec files already exist on COPR for this software. That
-being said, I do beleive I made some improvements over existing packages (such
-as downloading sources from the github archives rather than the tarball release
-- which in theory need not match the original sources, compiling with all 
-optional modules enabled, including the built documentation, and running the
-unit tests)
+This exercise was intended to introduce me to the RPM ecosytem. Polybar was a
+good target since multiple spec files already exist on COPR for this software.
+This being said, I do beleive I made some improvements over existing packages 
+(such as downloading sources from the github archives rather than the tarball 
+release, which in theory need not match the original sources). I also compiled
+the source with all optional modules enabled, included the documentation in the
+install, and ran the provided unit tests).
 
-At present, I have only enabled the build process for Fedora version 30 on
-x86_64 machines.
+At present, I have only enabled Fedora version 30 on x86_64 machines as a build
+target.
 
 # Making the package
 
-The most helpful resource I found was this "RPM Packaging Guide" by the Redhat
-Developer Program: https://rpm-packaging-guide.github.io/
+The most helpful resource I found was 
+"[RPM Packaging Guide](https://rpm-packaging-guide.github.io/)", produced by
+the Redhat Developer Program.
 
-Besides adocumentation for the `.spec` file format, the most helpful part was
-the steps for testing locally before triggering a COPR build:
+Besides documentation for the `.spec` file format, the most helpful element of
+the documentation was at the begining of the document: steps for local testing.
 
 1. Install the rpm devtools
 
@@ -39,7 +40,7 @@ your home directory)
 
 `rpmbuild -ba <spec_file>`
 
-# Putting it on COPR
+# Building on COPR
 
 The online 
 [tutorial](https://docs.pagure.org/copr.copr/user_documentation.html#tutorial)
